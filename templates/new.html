@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <h1>Welcome, {{ username }}!</h1>
+
+    <h3 class="mt-3">Your dashboard is empty. No expenses recorded yet.</h3>
+
+    <!-- Add new expense -->
+    <a class="btn btn-primary btn-lg mt-2" href="/add">Add Expense</a>
+{% endblock %}

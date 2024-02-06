@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <h3 class="mt-3">All expenses:</h3>
+    <table class="table table-sripped mt-4">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in all_rows %}
+                <tr>
+                    <td>{{ row.category }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>{{ row.amount | usd }}</td>
+                    <td>{{ row.date }}</td>
+                    <td>
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="id" value="{{ row.id }}">
+                            <input class="btn btn-outline-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="mt-4">Expenses By Category:</h3>
+    <table class="table table-dark table-stripped mt-3">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.category }}</td>
+                    <td>{{ row.total_amount | usd }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table table-dark table-stripped mt-3">
+        <thead>
+            <tr>
+                <th>Total Expense:</th>
+                <th>{{ total_expense | usd }}</th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- Add new expense -->
+    <a class="btn btn-primary btn-lg mt-2" href="/add">Add Expense</a>
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Check if the user has logged in before
+        if (!localStorage.getItem('visitedBefore')) {
+            // If it's the first visit, show the h1 element
+            document.getElementById('welcome-heading').style.display = 'block';
+
+            // Set a flag in localStorage to indicate that the user has visited
+            localStorage.setItem('visitedBefore', 'true');
+        } else {
+            // If it's not the first visit, hide the h1 element
+            document.getElementById('welcome-heading').style.display = 'none';
+        }
+    </script>
+{% endblock %}

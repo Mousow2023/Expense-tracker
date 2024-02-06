@@ -1,0 +1,27 @@
+body::before {
+    display: block;
+    content: '';
+    height: 65px;
+}
+
+body {
+    background-color:beige;
+}
+nav {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.nav-item {
+    font-size: larger;
+    color: white;
+    margin-left: 1em;
+}
+
+.add {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color:rgba(79, 240, 240, 0.938);
+    border-radius: 5%;
+}

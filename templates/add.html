@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Expense
+{% endblock %}
+
+{% block main %}
+    <form class="add" action="/add" method="post">
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input autocomplete="off" required autofocus class="form-control mx-auto w-auto" id="amount" name="amount" placeholder="Amount" type="number">
+            <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="description" name="description" placeholder="Description" type="text">
+            <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date <span class="text-muted">(Optional)</span></label>
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="date" name="date" placeholder="YY/mm/dd" type="date">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select required class="form-select w-50 mx-auto" name="category" id="category">
+                <option selected disabled value="">Category</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Expense</button>
+    </form>
+{% endblock %}
